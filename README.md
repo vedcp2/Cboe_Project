@@ -29,20 +29,31 @@ A full-stack generative AI application for data analysis and insights, built wit
    ```
 
 4. **Access the application**
+   - Frontend: http://localhost:3000
    - Backend API: http://localhost:8000
    - API Documentation: http://localhost:8000/docs
    - Health Check: http://localhost:8000/
 
 ### Manual Docker Commands
 
-**Build the image:**
+**Build the backend image:**
 ```bash
-docker build -t cboe-intelligence-hub .
+docker build -t cboe-intelligence-hub-backend .
 ```
 
-**Run the container:**
+**Build the frontend image:**
 ```bash
-docker run -p 8000:8000 --env-file .env cboe-intelligence-hub
+docker build -t cboe-intelligence-hub-frontend ./frontend
+```
+
+**Run the backend container:**
+```bash
+docker run -p 8000:8000 --env-file .env cboe-intelligence-hub-backend
+```
+
+**Run the frontend container:**
+```bash
+docker run -p 3000:3000 cboe-intelligence-hub-frontend
 ```
 
 **Run with environment variables:**
@@ -204,21 +215,28 @@ Once running, access the interactive API documentation:
 
 ```bash
 # View application logs
-docker-compose logs app
+docker-compose logs backend
+docker-compose logs frontend
+
+# View all logs
+docker-compose logs
 
 # Interactive debugging
-docker exec -it cboe-app /bin/bash
+docker exec -it cboe-intelligence-hub-backend-1 /bin/bash
+docker exec -it cboe-intelligence-hub-frontend-1 /bin/sh
 
-# Check Python environment
-docker exec cboe-app python --version
-docker exec cboe-app pip list
+# Check environments
+docker exec cboe-intelligence-hub-backend-1 python --version
+docker exec cboe-intelligence-hub-frontend-1 node --version
 ```
 
 ## 🛠️ Architecture
 
+- **Frontend**: React with TypeScript, served via Node.js
 - **Backend**: FastAPI with Python 3.12
 - **Database**: Snowflake integration
 - **AI**: OpenAI GPT integration with LangChain
 - **Containerization**: Docker with multi-stage builds
-- **Security**: Non-root user, minimal base image
+- **Security**: Non-root users, minimal base images
+- **Ports**: Frontend (3000), Backend (8000)
 
