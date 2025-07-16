@@ -8,6 +8,7 @@ A full-stack generative AI application for data analysis and insights, built wit
 
 - Docker and Docker Compose installed
 - `.env` file with required environment variables (see Configuration section)
+- Snowflake database created
 
 ### Quick Start
 
