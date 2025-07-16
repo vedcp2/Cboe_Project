@@ -13,7 +13,7 @@ A full-stack generative AI application for data analysis and insights, built wit
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/vedcp2/Cboe_Project.git               
+   git clone https://github.com/vedcp2/cboe-intelligence-hub.git               
    cd cboe-intelligence-hub
    ```
 
